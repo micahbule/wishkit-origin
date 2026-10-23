@@ -1,7 +1,7 @@
 <script>
   import wishlist from '../data/wishlist.json'
 
-  // Placeholder gift icon, same data:URL the the build-time generator used,
+  // Placeholder gift icon, same data:URL the build-time generator used,
   // so layouts match exactly when a photo is absent.
   const placeholder =
     'data:image/svg+xml,' +
@@ -60,13 +60,6 @@
     </p>
   </footer>
 </div>
-
-<!-- Placeholder gift icon for items without a photo. Reuse the same
-     data:URL the build-time generator used, so layouts match exactly. -->
-<svg style="display: none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
-  <rect width="600" height="400" fill="#8883" />
-  <text x="300" y="225" font-size="72" text-anchor="middle">🎁</text>
-</svg>
 
 <style>
   :root {
@@ -192,14 +185,5 @@
     padding: 20px 0;
     font-size: 0.85rem;
     color: var(--text);
-  }
-
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
   }
 </style>
