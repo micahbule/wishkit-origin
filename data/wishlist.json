@@ -2,28 +2,9 @@
   "title": "Holiday Wishlist 2026",
   "author": "Micah",
   "items": [
-    {
-      "name": "Wool Knit Scarf",
-      "description": "Something warm and soft in forest green or cranberry red.",
-      "link": "https://example.com/wool-scarf",
-      "photo": "https://picsum.photos/seed/wishkit-scarf/600/400",
-      "price": "$45"
-    },
-    {
-      "name": "Pour-Over Coffee Set",
-      "description": "Ceramic dripper, gooseneck kettle, and a bag of good beans.",
-      "link": "https://example.com/pour-over-set",
-      "price": "$89"
-    },
-    {
-      "name": "Hardcover Novel",
-      "description": "Any well-reviewed mystery from this year — surprise me!",
-      "photo": "https://picsum.photos/seed/wishkit-book/600/400",
-      "price": "$28"
-    },
-    {
-      "name": "Handwritten Letter",
-      "description": "Free, and my favorite kind of gift."
-    }
+    { "name": "Wool Knit Scarf", "description": "Something warm and soft in forest green or cranberry red.", "link": "https://example.com/wool-scarf", "photo": "https://picsum.photos/seed/wishkit-scarf/600/400", "price": "$45" },
+    { "name": "Pour-Over Coffee Set", "description": "Ceramic dripper, gooseneck kettle, and a bag of good beans.", "link": "https://example.com/pour-over-set", "price": "$89" },
+    { "name": "Hardcover Novel", "description": "Any well-reviewed mystery from this year - surprise me!", "photo": "https://picsum.photos/seed/wishkit-book/600/400", "price": "$28" },
+    { "name": "Handwritten Letter", "description": "Free, and my favorite kind of gift." }
   ]
 }
