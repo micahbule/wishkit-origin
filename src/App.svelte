@@ -1,9 +1,12 @@
-<script>
-  import wishlist from '../data/wishlist.json'
+<script lang="ts">
+  import type { Wishlist } from './lib/types'
+  import data from '../data/wishlist.json'
+
+  const wishlist: Wishlist = data
 
   // Placeholder gift icon, same data:URL the build-time generator used,
   // so layouts match exactly when a photo is absent.
-  const placeholder =
+  const placeholder: string =
     'data:image/svg+xml,' +
     encodeURIComponent(
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">' +
