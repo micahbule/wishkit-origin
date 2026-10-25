@@ -4,7 +4,7 @@
     "target": "ES2023",
     "lib": ["ES2023"],
     "module": "ESNext",
-    "types": [],
+    "types": ["node"],
     "skipLibCheck": true,
 
     /* Bundler mode */
@@ -20,5 +20,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["vite.config.ts", "svelte.config.js"]
+  "include": ["vite.config.ts", "svelte.config.js", "playwright.config.ts", "e2e"]
 }

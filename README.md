@@ -41,3 +41,17 @@ If you have state that's important to retain within a component, consider creati
 import { writable } from 'svelte/store'
 export default writable(0)
 ```
+
+## PR videos (Playwright)
+
+```bash
+npm run record          # films every spec in e2e/ → recordings/*.mp4
+npm run test:e2e        # same specs, no video unless a test fails
+SLOWMO=800 npm run record   # slower playback (default 400ms per action)
+npm run record -- -g walkthrough   # record only matching tests
+```
+
+Specs run against the production build (`vite build` + `vite preview` on :4173).
+Videos convert to mp4 when `ffmpeg` is installed, otherwise stay `.webm`; both play
+inline on GitHub — drag the file from `recordings/` into the PR description.
+To record a new flow, add a spec under `e2e/`.

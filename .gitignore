@@ -26,3 +26,8 @@ dist-ssr
 # Claude Code handoff
 CLAUDE.md
 code
+
+# Playwright
+test-results
+playwright-report
+recordings
