@@ -2,9 +2,6 @@
   "title": "Holiday Wishlist 2026",
   "author": "Micah",
   "items": [
-    { "name": "Wool Knit Scarf", "description": "Something warm and soft in forest green or cranberry red.", "link": "https://example.com/wool-scarf", "photo": "https://picsum.photos/seed/wishkit-scarf/600/400", "price": "$45", "tags": ["cozy", "winter", "apparel"] },
-    { "name": "Pour-Over Coffee Set", "description": "Ceramic dripper, gooseneck kettle, and a bag of good beans.", "link": "https://example.com/pour-over-set", "price": "$89", "tags": ["coffee", "kitchen", "cozy"] },
-    { "name": "Hardcover Novel", "description": "Any well-reviewed mystery from this year - surprise me!", "photo": "https://picsum.photos/seed/wishkit-book/600/400", "price": "$28", "tags": ["books", "cozy"] },
-    { "name": "Handwritten Letter", "description": "Free, and my favorite kind of gift.", "tags": ["free", "sentimental"] }
+    { "name": "Anker Prime Desktop Charger (200W, 6 Ports)", "description": "GaN desktop charger with 2 USB-A and 4 USB-C ports, up to 200W total output. Model A2683.", "link": "https://www.lazada.com.ph/products/anker-prime-desktop-charger-200w-6-ports-gan-with-2-usb-a-4-usb-c-up-to-200w-output-compatible-with-iphone-15-samsung-galaxy-s23-google-pixel-8-a2683-i4784359720-s27575532306.html", "photo": "https://img.lazcdn.com/g/ff/kf/S21668111439f4f8da6902d933197c1357.png_720x720q80.png_.webp", "price": "₱5,695", "tags": ["tech", "charging", "desk-setup"] }
   ]
 }

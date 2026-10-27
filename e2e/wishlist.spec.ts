@@ -40,14 +40,22 @@ test('tag cloud filters the cards', async ({ page }) => {
   const cloud = page.getByRole('navigation', { name: 'Filter by tag' })
   const cards = page.locator('.wish')
 
-  await cloud.getByRole('button', { name: /^#cozy/ }).click()
-  const cozy = data.items.filter((item) => item.tags?.includes('cozy'))
-  await expect(cards).toHaveCount(cozy.length)
+  // Pick tags from the data so the test survives wishlist edits.
+  const items = data.items as { tags?: string[] }[]
+  const [firstTag] = items.flatMap((item) => item.tags ?? [])
+  test.skip(!firstTag, 'no tags in wishlist.json')
+
+  await cloud.getByRole('button', { name: new RegExp(`^#${firstTag} `) }).click()
+  const tagged = items.filter((item) => item.tags?.includes(firstTag))
+  await expect(cards).toHaveCount(tagged.length)
 
   await cloud.getByRole('button', { name: 'All' }).click()
   await expect(cards).toHaveCount(data.items.length)
 
   // Tags on a card filter too.
-  await cards.first().getByRole('button', { name: '#winter' }).click()
-  await expect(cards).toHaveCount(1)
+  const cardTag = items[0].tags?.at(-1)
+  if (cardTag) {
+    await cards.first().getByRole('button', { name: `#${cardTag}`, exact: true }).click()
+    await expect(cards).toHaveCount(items.filter((item) => item.tags?.includes(cardTag)).length)
+  }
 })
