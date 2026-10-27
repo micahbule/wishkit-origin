@@ -17,3 +17,20 @@ test('wishlist walkthrough', async ({ page }) => {
   await page.locator('footer').scrollIntoViewIfNeeded()
   await expect(page.locator('footer')).toContainText(`Wishlist by ${data.author}`)
 })
+
+test('layout fits the viewport without horizontal scroll', async ({ page }) => {
+  await page.goto('/')
+  const overflow = await page.evaluate(
+    () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+  )
+  expect(overflow).toBeLessThanOrEqual(0)
+})
+
+test('item links are comfortable touch targets on mobile', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'mobile-only check')
+  await page.goto('/')
+  for (const link of await page.locator('.wish a').all()) {
+    const box = await link.boundingBox()
+    expect(box?.height).toBeGreaterThanOrEqual(44)
+  }
+})

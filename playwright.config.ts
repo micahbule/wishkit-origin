@@ -15,7 +15,10 @@ export default defineConfig({
     video: record ? { mode: 'on', size: { width: 1280, height: 720 } } : 'retain-on-failure',
     launchOptions: { slowMo: record ? Number(process.env.SLOWMO ?? 400) : 0 },
   },
-  projects: [{ name: 'chromium', use: devices['Desktop Chrome'] }],
+  projects: [
+    { name: 'chromium', use: devices['Desktop Chrome'] },
+    { name: 'mobile', use: devices['Pixel 7'] },
+  ],
   // Record against the production build, the same output reviewers would ship.
   webServer: {
     command: `npm run build && npx vite preview --port ${port} --strictPort`,
