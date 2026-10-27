@@ -1,9 +1,29 @@
 <script lang="ts">
   import type { Wishlist } from './lib/types'
+  import TagCloud from './lib/TagCloud.svelte'
   import WishCard from './lib/WishCard.svelte'
   import data from '../data/wishlist.json'
 
   const wishlist: Wishlist = data
+
+  // Tag → number of items carrying it, most common first.
+  const tagCounts = new Map(
+    [
+      ...wishlist.items
+        .flatMap((item) => item.tags ?? [])
+        .reduce((acc, tag) => acc.set(tag, (acc.get(tag) ?? 0) + 1), new Map<string, number>()),
+    ].sort(([a, x], [b, y]) => y - x || a.localeCompare(b)),
+  )
+
+  let selectedTag: string | null = $state(null)
+
+  const visibleItems = $derived(
+    selectedTag ? wishlist.items.filter((item) => item.tags?.includes(selectedTag!)) : wishlist.items,
+  )
+
+  function selectTag(tag: string | null) {
+    selectedTag = tag
+  }
 </script>
 
 <div class="shell">
@@ -11,9 +31,12 @@
     <h1>{wishlist.title}</h1>
   </header>
   <main>
+    {#if tagCounts.size}
+      <TagCloud counts={tagCounts} selected={selectedTag} onselect={selectTag} />
+    {/if}
     <ul class="wishes">
-      {#each wishlist.items as item (item.name)}
-        <WishCard {item} />
+      {#each visibleItems as item (item.name)}
+        <WishCard {item} selectedTag={selectedTag} onselect={selectTag} />
       {/each}
     </ul>
   </main>

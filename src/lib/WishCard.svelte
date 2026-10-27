@@ -1,7 +1,15 @@
 <script lang="ts">
   import type { WishlistItem } from './types'
 
-  let { item }: { item: WishlistItem } = $props()
+  let {
+    item,
+    selectedTag = null,
+    onselect,
+  }: {
+    item: WishlistItem
+    selectedTag?: string | null
+    onselect?: (tag: string | null) => void
+  } = $props()
 
   // Placeholder gift icon, same data:URL the build-time generator used,
   // so layouts match exactly when a photo is absent.
@@ -26,6 +34,21 @@
     <h2>{item.name}</h2>
     {#if item.description}
       <p>{item.description}</p>
+    {/if}
+    {#if item.tags?.length}
+      <ul class="tags" aria-label="Tags">
+        {#each item.tags as tag (tag)}
+          <li>
+            <button
+              type="button"
+              aria-pressed={selectedTag === tag}
+              onclick={() => onselect?.(selectedTag === tag ? null : tag)}
+            >
+              #{tag}
+            </button>
+          </li>
+        {/each}
+      </ul>
     {/if}
     {#if item.price || item.link}
       <div class="wish-meta">
@@ -80,6 +103,33 @@
 
   p {
     font-size: 0.95rem;
+  }
+
+  .tags {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tags button {
+    padding: 2px 10px;
+    font: inherit;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    background: var(--accent-bg);
+    border: 1px solid transparent;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+
+  .tags button[aria-pressed='true'] {
+    color: var(--bg);
+    background: var(--accent);
   }
 
   /* Phones: price on top, full-width tap target below. */
@@ -137,7 +187,8 @@
       box-shadow: var(--shadow);
     }
 
-    a:hover {
+    a:hover,
+    .tags button:hover {
       border-color: var(--accent-border);
     }
   }

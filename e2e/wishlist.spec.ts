@@ -34,3 +34,20 @@ test('item links are comfortable touch targets on mobile', async ({ page, isMobi
     expect(box?.height).toBeGreaterThanOrEqual(44)
   }
 })
+
+test('tag cloud filters the cards', async ({ page }) => {
+  await page.goto('/')
+  const cloud = page.getByRole('navigation', { name: 'Filter by tag' })
+  const cards = page.locator('.wish')
+
+  await cloud.getByRole('button', { name: /^#cozy/ }).click()
+  const cozy = data.items.filter((item) => item.tags?.includes('cozy'))
+  await expect(cards).toHaveCount(cozy.length)
+
+  await cloud.getByRole('button', { name: 'All' }).click()
+  await expect(cards).toHaveCount(data.items.length)
+
+  // Tags on a card filter too.
+  await cards.first().getByRole('button', { name: '#winter' }).click()
+  await expect(cards).toHaveCount(1)
+})

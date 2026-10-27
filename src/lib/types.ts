@@ -4,6 +4,7 @@ export interface WishlistItem {
   link?: string
   photo?: string
   price?: string
+  tags?: string[]
 }
 
 export interface Wishlist {
