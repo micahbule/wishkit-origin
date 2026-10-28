@@ -2,6 +2,7 @@
   "title": "Holiday Wishlist 2026",
   "author": "Micah",
   "items": [
-    { "name": "Anker Prime Desktop Charger (200W, 6 Ports)", "description": "GaN desktop charger with 2 USB-A and 4 USB-C ports, up to 200W total output. Model A2683.", "link": "https://www.lazada.com.ph/products/anker-prime-desktop-charger-200w-6-ports-gan-with-2-usb-a-4-usb-c-up-to-200w-output-compatible-with-iphone-15-samsung-galaxy-s23-google-pixel-8-a2683-i4784359720-s27575532306.html", "photo": "https://img.lazcdn.com/g/ff/kf/S21668111439f4f8da6902d933197c1357.png_720x720q80.png_.webp", "price": "₱5,695", "tags": ["tech", "charging", "desk-setup"] }
+    { "name": "Anker Prime Desktop Charger (200W, 6 Ports)", "description": "GaN desktop charger with 2 USB-A and 4 USB-C ports, up to 200W total output. Model A2683.", "link": "https://www.lazada.com.ph/products/anker-prime-desktop-charger-200w-6-ports-gan-with-2-usb-a-4-usb-c-up-to-200w-output-compatible-with-iphone-15-samsung-galaxy-s23-google-pixel-8-a2683-i4784359720-s27575532306.html", "photo": "https://img.lazcdn.com/g/ff/kf/S21668111439f4f8da6902d933197c1357.png_720x720q80.png_.webp", "price": "₱5,695", "tags": ["tech", "charging", "desk-setup"] },
+    { "name": "ASICS GEL-CUMULUS 28 (Men's)", "description": "Lightweight running shoe with FF BLAST MAX foam for a smooth ride. Black/Illuminate Green, US size 13, standard width.", "link": "https://www.asics.com/ph/en-ph/gel-cumulus-28/p/1011C143-001.html?size=13&width=STANDARDD", "photo": "https://images.asics.com/is/image/asics/1011C143_001_SL_LT_GLB?wid=600&hei=400&fit=constrain", "price": "₱9,890", "tags": ["running", "fitness", "apparel"] }
   ]
 }
