@@ -59,3 +59,29 @@ test('tag cloud filters the cards', async ({ page }) => {
     await expect(cards).toHaveCount(items.filter((item) => item.tags?.includes(cardTag)).length)
   }
 })
+
+test('theme toggle overrides the OS and persists', async ({ page }) => {
+  await page.emulateMedia({ colorScheme: 'light' })
+  await page.goto('/')
+  const bg = () => page.evaluate(() => getComputedStyle(document.documentElement).backgroundColor)
+  const toggle = page.getByRole('group', { name: 'Color theme' })
+
+  await expect(toggle.getByRole('button', { name: 'Auto' })).toHaveAttribute('aria-pressed', 'true')
+  expect(await bg()).toBe('rgb(255, 255, 255)')
+
+  await toggle.getByRole('button', { name: 'Dark' }).click()
+  expect(await bg()).toBe('rgb(22, 23, 29)')
+
+  // Survives a reload, applied before the app mounts.
+  await page.reload()
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
+  expect(await bg()).toBe('rgb(22, 23, 29)')
+
+  // Auto follows the OS again.
+  await toggle.getByRole('button', { name: 'Auto' }).click()
+  await expect(page.locator('html')).not.toHaveAttribute('data-theme')
+  await page.emulateMedia({ colorScheme: 'dark' })
+  expect(await bg()).toBe('rgb(22, 23, 29)')
+  await toggle.getByRole('button', { name: 'Light' }).click()
+  expect(await bg()).toBe('rgb(255, 255, 255)')
+})

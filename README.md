@@ -1,46 +1,102 @@
-# Svelte + Vite
+# wishkit-origin
 
-This template should help get you started developing with Svelte in Vite.
+A wishlist page you can make your own. Fork or clone this repo, edit two JSON
+files in `data/`, and push: GitHub Pages builds and publishes your page.
 
-## Recommended IDE Setup
+Built with Svelte 5 and Vite.
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+## Make it yours
 
-## Need an official Svelte framework?
+Everything a fork needs to change lives in `data/`. Keeping your edits there
+means you can pull template updates later without merge conflicts.
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+### 1. Your wishlist: `data/wishlist.json`
 
-## Technical considerations
-
-**Why use this over SvelteKit?**
-
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
-
-This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
-
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
-
-**Why include `.vscode/extensions.json`?**
-
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `checkJs` in the JS template?**
-
-It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate. This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of JavaScript, it is trivial to change the configuration.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/sveltejs/svelte-hmr/tree/master/packages/svelte-hmr#preservation-of-local-state).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```js
-// store.js
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
+```json
+{
+  "title": "Holiday Wishlist 2026",
+  "author": "Your name",
+  "items": [
+    {
+      "name": "Anker Prime Desktop Charger",
+      "description": "200W GaN charger, 6 ports.",
+      "link": "https://example.com/product",
+      "photo": "https://example.com/photo.jpg",
+      "price": "₱5,695",
+      "tags": ["tech", "desk-setup"]
+    }
+  ]
+}
 ```
+
+Only `title`, `items` and each item's `name` are required. Tags show up on
+each card and in a tag cloud that filters the list.
+
+### 2. Your look: `data/theme.json`
+
+```json
+{
+  "$schema": "./theme.schema.json",
+  "colors": {
+    "text":       { "light": "#6b6375", "dark": "#9ca3af" },
+    "heading":    { "light": "#08060d", "dark": "#f3f4f6" },
+    "background": { "light": "#ffffff", "dark": "#16171d" },
+    "surface":    { "light": "#ffffff", "dark": "#1c1d24" },
+    "border":     { "light": "#e5e4e7", "dark": "#2e303a" },
+    "muted":      { "light": "#f4f3ec", "dark": "#1f2028" },
+    "accent":     { "light": "#b3261e", "dark": "#f2867d" }
+  },
+  "fonts": {
+    "body": "system-ui, 'Segoe UI', Roboto, sans-serif",
+    "mono": "ui-monospace, Consolas, monospace"
+  },
+  "radius": 12
+}
+```
+
+| Key | Used for |
+| --- | --- |
+| `text` | Body text |
+| `heading` | Headings |
+| `background` | Page background |
+| `surface` | Cards and controls |
+| `border` | Dividers and outlines |
+| `muted` | Image placeholder background |
+| `accent` | Links, tags and highlights (its pale tints are derived for you) |
+| `fonts.body`, `fonts.mono` | CSS font-family lists (optional) |
+| `radius` | Card corner radius in px, 0–48 (optional) |
+
+Every color needs a light and a dark value as a hex code. Visitors see the one
+matching their OS, and can switch with the Auto / Light / Dark toggle in the
+header.
+
+The theme is applied at build time and checked first. The build stops and
+lists every problem if a color is missing or isn't hex, or if `text`,
+`heading` or `accent` is too hard to read on `background` or `surface`
+(WCAG AA, 4.5:1). Editors that understand JSON Schema (VS Code does) also
+autocomplete and flag mistakes as you type, using `data/theme.schema.json`.
+
+### 3. Publish
+
+Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site
+and deploys it to GitHub Pages. In your fork, enable Pages once under
+**Settings → Pages → Source: GitHub Actions**.
+
+## Develop
+
+```bash
+npm install
+npm run dev       # dev server; saving data/theme.json reloads the page
+npm run build     # production build → dist/
+npm run preview   # serve the production build
+```
+
+How theming works under the hood: `plugins/theme.ts` is a Vite plugin that
+reads `data/theme.json`, validates it, and inlines CSS custom properties
+(`--text`, `--bg`, `--accent`, …) into `index.html`. Components only read
+those tokens, so they never need editing for a new look. Each color is a
+`light-dark()` pair, resolved by `color-scheme`, which the toggle sets via
+`<html data-theme>`.
 
 ## PR videos (Playwright)
 

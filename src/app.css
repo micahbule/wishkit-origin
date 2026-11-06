@@ -4,24 +4,20 @@
  * Breakpoints: 40rem (~640px, tablet) and 64rem (~1024px, desktop).
  */
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --surface: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #b3261e;
-  --accent-bg: rgba(179, 38, 30, 0.08);
-  --accent-border: rgba(179, 38, 30, 0.4);
+  /*
+   * Color, font and radius tokens (--text, --text-h, --bg, --surface, --border,
+   * --code-bg, --accent, --accent-bg, --accent-border, --sans, --mono, --radius)
+   * are generated from data/theme.json at build time by plugins/theme.ts and
+   * inlined into index.html. Colors are light-dark() pairs resolved by the
+   * active `color-scheme`: the OS by default, or <html data-theme="light|dark">
+   * when the visitor picks one (src/lib/theme.svelte.ts).
+   */
   --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+    light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)) 0 10px 15px -3px,
+    light-dark(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.25)) 0 4px 6px -2px;
 
   /* Fluid side gutter: 16px on phones, growing to 32px on wide screens. */
   --gutter: clamp(1rem, 4vw, 2rem);
-  --radius: 12px;
   --tap: 44px; /* minimum touch target */
 
   font: 16px/1.5 var(--sans);
@@ -36,20 +32,12 @@
   text-size-adjust: 100%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --surface: #1c1d24;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #f2867d;
-    --accent-bg: rgba(242, 134, 125, 0.12);
-    --accent-border: rgba(242, 134, 125, 0.4);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
 }
 
 *,

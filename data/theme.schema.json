@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "theme.schema.json",
+  "title": "Wishlist theme",
+  "description": "Look of a wishlist page. Applied at build time by plugins/theme.ts; every color needs a light and a dark value.",
+  "type": "object",
+  "required": ["colors"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "colors": {
+      "type": "object",
+      "required": ["text", "heading", "background", "surface", "border", "muted", "accent"],
+      "additionalProperties": false,
+      "properties": {
+        "text": { "$ref": "#/$defs/pair", "description": "Body text. Must reach 4.5:1 contrast on background and surface." },
+        "heading": { "$ref": "#/$defs/pair", "description": "Headings. Must reach 4.5:1 contrast on background and surface." },
+        "background": { "$ref": "#/$defs/pair", "description": "Page background." },
+        "surface": { "$ref": "#/$defs/pair", "description": "Card and control background." },
+        "border": { "$ref": "#/$defs/pair", "description": "Dividers and outlines." },
+        "muted": { "$ref": "#/$defs/pair", "description": "Image placeholder background." },
+        "accent": { "$ref": "#/$defs/pair", "description": "Links, tags and highlights; its tints are derived. Must reach 4.5:1 contrast on background and surface." }
+      }
+    },
+    "fonts": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "body": { "type": "string", "minLength": 1, "description": "CSS font-family list for body text." },
+        "mono": { "type": "string", "minLength": 1, "description": "CSS font-family list for tags and prices." }
+      }
+    },
+    "radius": { "type": "number", "minimum": 0, "maximum": 48, "description": "Corner radius of cards, in px." }
+  },
+  "$defs": {
+    "hex": { "type": "string", "pattern": "^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$" },
+    "pair": {
+      "type": "object",
+      "required": ["light", "dark"],
+      "additionalProperties": false,
+      "properties": {
+        "light": { "$ref": "#/$defs/hex" },
+        "dark": { "$ref": "#/$defs/hex" }
+      }
+    }
+  }
+}
