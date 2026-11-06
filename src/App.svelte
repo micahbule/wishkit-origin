@@ -2,6 +2,7 @@
   import type { Wishlist } from './lib/types'
   import TagCloud from './lib/TagCloud.svelte'
   import WishCard from './lib/WishCard.svelte'
+  import ThemeToggle from './lib/ThemeToggle.svelte'
   import data from '../data/wishlist.json'
 
   const wishlist: Wishlist = data
@@ -29,6 +30,7 @@
 <div class="shell">
   <header>
     <h1>{wishlist.title}</h1>
+    <ThemeToggle />
   </header>
   <main>
     {#if tagCounts.size}
@@ -62,6 +64,11 @@
   }
 
   header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
     border-bottom: 3px double var(--accent-border);
     padding-bottom: 12px;
     margin-bottom: 20px;

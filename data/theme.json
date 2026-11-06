@@ -1,0 +1,17 @@
+{
+  "$schema": "./theme.schema.json",
+  "colors": {
+    "text": { "light": "#6b6375", "dark": "#9ca3af" },
+    "heading": { "light": "#08060d", "dark": "#f3f4f6" },
+    "background": { "light": "#ffffff", "dark": "#16171d" },
+    "surface": { "light": "#ffffff", "dark": "#1c1d24" },
+    "border": { "light": "#e5e4e7", "dark": "#2e303a" },
+    "muted": { "light": "#f4f3ec", "dark": "#1f2028" },
+    "accent": { "light": "#b3261e", "dark": "#f2867d" }
+  },
+  "fonts": {
+    "body": "system-ui, 'Segoe UI', Roboto, sans-serif",
+    "mono": "ui-monospace, Consolas, monospace"
+  },
+  "radius": 12
+}
