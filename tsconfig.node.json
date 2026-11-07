@@ -20,5 +20,13 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["vite.config.ts", "plugins", "svelte.config.js", "playwright.config.ts", "e2e"]
+  "include": [
+    "vite.config.ts",
+    "plugins",
+    "src/lib/themeTokens.ts",
+    "src/lib/types.ts",
+    "svelte.config.js",
+    "playwright.config.ts",
+    "e2e"
+  ]
 }

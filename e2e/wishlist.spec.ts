@@ -60,6 +60,13 @@ test('tag cloud filters the cards', async ({ page }) => {
   }
 })
 
+test('production build ships no editor', async ({ page }) => {
+  await page.goto('/')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(data.title)
+  await expect(page.getByRole('button', { name: /^Edit/ })).toHaveCount(0)
+  await expect(page.locator('#wishkit-editor')).toHaveCount(0)
+})
+
 test('theme toggle overrides the OS and persists', async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'light' })
   await page.goto('/')
