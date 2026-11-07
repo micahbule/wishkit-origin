@@ -31,3 +31,6 @@ code
 test-results
 playwright-report
 recordings
+
+# Amp orb portal state (written by `amp orb services ensure`)
+.amp/portals/*

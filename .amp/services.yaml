@@ -1,0 +1,7 @@
+services:
+  dev:
+    command: npm run dev -- --host 0.0.0.0 --port "$PORT" --strictPort
+    portal:
+      url: /
+      title: Wishlist (dev)
+      description: Vite dev server; saving data/theme.json reloads the page.

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Prepares an Amp orb: npm dependencies and the Playwright browser used by e2e/.
+# Runs once per fresh orb and again on stale snapshots, so every step is idempotent.
+set -euo pipefail
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
+step() {
+  local start=$SECONDS
+  echo "==> $*"
+  "$@"
+  echo "    done in $((SECONDS - start))s"
+}
+
+# Same install as CI (.github/workflows/deploy.yml); takes a few seconds even warm.
+step npm ci --no-audit --no-fund
+
+# Playwright projects (Desktop Chrome, Pixel 7) both run on Chromium. The orb image
+# already has its system libraries, so no --with-deps. No-op when already downloaded.
+step npx playwright install chromium
