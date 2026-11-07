@@ -76,6 +76,20 @@ lists every problem if a color is missing or isn't hex, or if `text`,
 (WCAG AA, 4.5:1). Editors that understand JSON Schema (VS Code does) also
 autocomplete and flag mistakes as you type, using `data/theme.schema.json`.
 
+### Edit in the browser (dev mode)
+
+Prefer clicking to typing JSON? Run `npm install` and `npm run dev`, open the
+page, and press the **Edit** button in the bottom-right corner. A side panel
+lets you change the title, author and items (add, remove, reorder) and every
+theme color, font and the corner radius, with the page updating as you type.
+Contrast problems are listed in the panel, and Save stays disabled until they
+are fixed.
+
+**Save** (or Ctrl/Cmd+S) writes `data/wishlist.json` and `data/theme.json`;
+**Discard** reverts to the last save. Then commit and push those files to
+publish. The editor and its save endpoint only exist in `npm run dev`: they
+are never part of the built site.
+
 ### 3. Publish
 
 Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site
